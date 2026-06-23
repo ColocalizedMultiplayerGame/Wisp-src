@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://d1w5ba0q2scck"]
+
+[ext_resource type="AudioStream" uid="uid://mq2ro0toq4kf" path="res://sounds/Walen - Dark Heart (freetouse.com).mp3" id="1_gbdfy"]
+
+[node name="SoundManager" type="Node" unique_id=828107313]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1989257102]
+stream = ExtResource("1_gbdfy")
+volume_db = -10.0
+autoplay = true

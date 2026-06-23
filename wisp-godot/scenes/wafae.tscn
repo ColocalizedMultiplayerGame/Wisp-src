@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cpbo5fap8dbbo"]
+
+[ext_resource type="PackedScene" uid="uid://rkncorxuka4x" path="res://scenes/luma.tscn" id="1_xuuaj"]
+[ext_resource type="PackedScene" uid="uid://chrcb82edenbs" path="res://scenes/labyrinthe1.tscn" id="2_cavsx"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xuuaj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xuuaj"]
+size = Vector2(1152, 648)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2lnis"]
+distance = -650.0
+
+[node name="Node2D" type="Node2D" unique_id=1869569563]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1441761633]
+limit_left = 0
+limit_top = 0
+
+[node name="Luma" parent="." unique_id=1027341918 instance=ExtResource("1_xuuaj")]
+z_index = 2
+position = Vector2(576, 615)
+safe_margin = 0.008
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1725118583]
+position = Vector2(576, 324)
+physics_material_override = SubResource("PhysicsMaterial_xuuaj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=903848634]
+visible = false
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_xuuaj")
+disabled = true
+one_way_collision_margin = 128.0
+
+[node name="dongeon" parent="." unique_id=2124884008 instance=ExtResource("2_cavsx")]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=646729381]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1542403074]
+shape = SubResource("WorldBoundaryShape2D_2lnis")

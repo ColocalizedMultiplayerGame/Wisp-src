@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://bpceoh2upfw1i"]
+
+[ext_resource type="FontFile" uid="uid://5h3btxjjh3h4" path="res://fonts/THE BLACK MARROW.ttf" id="1_bfs0s"]
+[ext_resource type="Script" uid="uid://bp8cexhjipxvu" path="res://scripts/ecran_fin.gd" id="1_x5kk6"]
+[ext_resource type="Texture2D" uid="uid://c0re6x3kbueg6" path="res://assets/BtnRestart.png" id="2_odtfm"]
+[ext_resource type="Texture2D" uid="uid://ccb3uqk83teiy" path="res://assets/BtnRestartAppuye.png" id="3_x5kk6"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bfs0s"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 4
+particles_anim_loop = true
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pldnb"]
+light_mode = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_x5kk6"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_bfs0s"]
+font_size = 56
+
+[node name="EcranFin" type="Node2D" unique_id=364202245]
+script = ExtResource("1_x5kk6")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1077240925]
+material = SubResource("CanvasItemMaterial_bfs0s")
+color = Color(0.284704, 0.29400638, 0.64028764, 0.6784314)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=113392408]
+visible = false
+position = Vector2(576, 324)
+
+[node name="Gagner" type="CanvasLayer" parent="." unique_id=1499470804]
+visible = false
+
+[node name="GagnerLabel" type="Label" parent="Gagner" unique_id=253683043]
+material = SubResource("CanvasItemMaterial_pldnb")
+offset_left = 204.0
+offset_top = 246.0
+offset_right = 962.0
+offset_bottom = 387.0
+theme_override_fonts/font = ExtResource("1_bfs0s")
+theme_override_font_sizes/font_size = 16
+text = "Félicitations vous avez
+ gagner ! "
+label_settings = SubResource("LabelSettings_x5kk6")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Perdu" type="CanvasLayer" parent="." unique_id=2000431624]
+visible = false
+
+[node name="PerduLabel" type="Label" parent="Perdu" unique_id=1421994489]
+material = SubResource("CanvasItemMaterial_pldnb")
+offset_left = 204.0
+offset_top = 246.0
+offset_right = 962.0
+offset_bottom = 387.0
+theme_override_fonts/font = ExtResource("1_bfs0s")
+text = "Vous avez perdu "
+label_settings = SubResource("LabelSettings_bfs0s")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="BtnRestart" type="CanvasLayer" parent="." unique_id=1124480780]
+visible = false
+
+[node name="TextureButton" type="TextureButton" parent="BtnRestart" unique_id=1883683184]
+offset_left = 463.99997
+offset_top = 393.0
+offset_right = 2768.0
+offset_bottom = 1833.0
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("2_odtfm")
+texture_pressed = ExtResource("3_x5kk6")
+
+[connection signal="button_up" from="BtnRestart/TextureButton" to="." method="_on_texture_button_button_up"]

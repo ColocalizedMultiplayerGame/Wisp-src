@@ -1,0 +1,129 @@
+[gd_scene format=4 uid="uid://x65ynam8iqic"]
+
+[ext_resource type="Script" uid="uid://b5lt84pqjgp06" path="res://scripts/premiere_scene.gd" id="1_cku70"]
+[ext_resource type="PackedScene" uid="uid://rkncorxuka4x" path="res://scenes/luma.tscn" id="2_m8nss"]
+[ext_resource type="FontFile" uid="uid://5h3btxjjh3h4" path="res://fonts/THE BLACK MARROW.ttf" id="3_7w2a8"]
+[ext_resource type="Script" uid="uid://cskolfyfht5mg" path="res://scripts/count_down_label.gd" id="4_gkb5j"]
+[ext_resource type="Script" uid="uid://bg36s4a0m13c0" path="res://scripts/num_tour_label.gd" id="5_4v0px"]
+[ext_resource type="PackedScene" uid="uid://bpceoh2upfw1i" path="res://scenes/ecran_fin.tscn" id="6_5vkbk"]
+[ext_resource type="Texture2D" uid="uid://c1pugq50c1om2" path="res://assets/blue-rock-ground.jpg" id="7_u226g"]
+[ext_resource type="PackedScene" uid="uid://dj5cgtvk3iu84" path="res://scenes/labyrinthe3.tscn" id="8_cku70"]
+
+[sub_resource type="Gradient" id="Gradient_2lnis"]
+offsets = PackedFloat32Array(0.12671232, 0.4280822, 0.71575344, 0.99657536)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.10980392, 0.10980392, 0.10980392, 0.21568628, 0.10980392, 0.10980392, 0.10980392, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iwv50"]
+gradient = SubResource("Gradient_2lnis")
+fill = 1
+fill_from = Vector2(0.46238938, 0.5243363)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2lnis"]
+distance = -650.0
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_2lnis"]
+a = Vector2(1, -31)
+b = Vector2(0, 47)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_iwv50"]
+light_mode = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_2lnis"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_taueg"]
+font_size = 30
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2pluf"]
+texture = ExtResource("7_u226g")
+texture_region_size = Vector2i(305, 305)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_6ir4b"]
+tile_size = Vector2i(300, 300)
+sources/3 = SubResource("TileSetAtlasSource_2pluf")
+
+[node name="Node2D" type="Node2D" unique_id=1869569563]
+script = ExtResource("1_cku70")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1441761633]
+limit_left = 0
+limit_top = 0
+
+[node name="Luma" parent="." unique_id=1027341918 instance=ExtResource("2_m8nss")]
+z_index = 2
+position = Vector2(576, 615)
+
+[node name="PointLight2D" type="PointLight2D" parent="Luma" unique_id=1345352216]
+position = Vector2(0.7599945, 0.23999023)
+scale = Vector2(1.0051185, 0.9983836)
+range_item_cull_mask = 3
+texture = SubResource("GradientTexture2D_iwv50")
+texture_scale = 7.79
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=646729381]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1542403074]
+shape = SubResource("WorldBoundaryShape2D_2lnis")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D2" unique_id=67696660]
+texture_filter = 2
+position = Vector2(554, 646)
+shape = SubResource("SegmentShape2D_2lnis")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1591495512]
+position = Vector2(600, 645)
+shape = SubResource("SegmentShape2D_2lnis")
+
+[node name="DarknessCanvasLayer" type="CanvasModulate" parent="." unique_id=1841513355]
+color = Color(7.6319244e-05, 7.6319244e-05, 7.6319244e-05, 1)
+
+[node name="CountDownLabel" type="Label" parent="." unique_id=789254676]
+visible = false
+z_index = 10
+material = SubResource("CanvasItemMaterial_iwv50")
+offset_left = 497.0
+offset_right = 650.0
+offset_bottom = 88.0
+theme_override_fonts/font = ExtResource("3_7w2a8")
+theme_override_font_sizes/font_size = 100
+text = "00"
+label_settings = SubResource("LabelSettings_2lnis")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+script = ExtResource("4_gkb5j")
+
+[node name="NumTourLabel" type="Label" parent="." unique_id=343153639]
+visible = false
+z_index = 10
+material = SubResource("CanvasItemMaterial_iwv50")
+offset_left = 29.0
+offset_top = 1.0
+offset_right = 403.0
+offset_bottom = 93.0
+size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("3_7w2a8")
+theme_override_font_sizes/font_size = 100
+text = "Nombre de tour restant : "
+label_settings = SubResource("LabelSettings_taueg")
+vertical_alignment = 1
+autowrap_mode = 3
+script = ExtResource("5_4v0px")
+
+[node name="EcranFin" parent="." unique_id=364202245 instance=ExtResource("6_5vkbk")]
+visible = false
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=717713807]
+z_index = -1
+scale = Vector2(0.5, 0.5)
+tile_map_data = PackedByteArray("AAAAAAAAAwAAAAAAAAABAAAAAwAAAAAAAAACAAAAAwAAAAAAAAADAAAAAwAAAAAAAAAEAAAAAwAAAAAAAAAFAAAAAwAAAAAAAAAGAAAAAwAAAAAAAAAHAAAAAwAAAAAAAAAHAAEAAwAAAAAAAAAHAAIAAwAAAAAAAAAHAAMAAwAAAAAAAAAHAAQAAwAAAAAAAAAGAAQAAwAAAAAAAAAFAAQAAwAAAAAAAAAEAAQAAwAAAAAAAAACAAQAAwAAAAAAAAABAAQAAwAAAAAAAAAAAAQAAwAAAAAAAAAAAAMAAwAAAAAAAAAAAAIAAwAAAAAAAAAAAAEAAwAAAAAAAAADAAQAAwAAAAAAAAA=")
+tile_set = SubResource("TileSet_6ir4b")
+collision_enabled = false
+
+[node name="labyrinthe3" parent="." unique_id=1736084393 instance=ExtResource("8_cku70")]
+
+[connection signal="gagner" from="Luma" to="." method="_on_luma_gagner"]
+[connection signal="perdu" from="Luma" to="." method="_on_luma_perdu"]
+[connection signal="round_changed" from="Luma" to="NumTourLabel" method="_on_luma_round_changed"]
+[connection signal="time_changed" from="Luma" to="CountDownLabel" method="_on_luma_time_changed"]
